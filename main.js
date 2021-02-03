@@ -1,7 +1,8 @@
 // input generate pin
 
-function getPin() {
-    const pin = (Math.random() * 10000 + '').split('.')[0];
+    function getPin() {
+    const random = Math.random() * 10000;
+     const pin = (random + " ").split('.')[0];
     if (pin.length === 4) {
         return pin
     }
@@ -12,8 +13,8 @@ function getPin() {
 
 
 function genaratePin() {
-    // document.getElementById('genaratePin').value =Math.floor((Math.random() * 10000 + '').split('.')[0]);
-    const pinInput = document.getElementById('pin').value = getPin();
+    const pinInput = document.getElementById('pin');
+    pinInput.value = getPin();
 }
 
 // event handler calculator button
@@ -28,15 +29,19 @@ const buttonContainer = document.getElementById('digits-container');
                 const typedInput = document.getElementById('typed-pin');
                 typedInput.value= ' ';
             }
-            // if (digit === 'B') {
-            //     const typedInput = document.getElementById('typed-pin');
-            //     typedInput.value=- 1;
-            // }
+            if (digit === "B") {
+             const typeInputPin = document.getElementById("typed-pin").value;
+             const backPin = typeInputPin.substr(0, typeInputPin.length - 1);
+              document.getElementById("typed-pin").value = backPin;
+             }
+            
         }
         else{
             const typedInput = document.getElementById('typed-pin');
                 typedInput.value= typedInput.value+digit;
         }
+        
+    
     })
 
     // verify handle
@@ -49,11 +54,42 @@ const buttonContainer = document.getElementById('digits-container');
         else{
             displayMatch( 'none' , 'block');
         }
-    }
+        // trial 
+            let tryc = document.getElementById("try-count").innerText;
+            const tryNumbe = parseInt(tryc);
+            const trycount = tryNumbe + 1;
+            document.getElementById("try-count").innerText = trycount;
+        
 
-    function displayMatch(corrrectStatus , incorrrectStatus) {
+    
+}
+function displayMatch(corrrectStatus , incorrrectStatus) {
         const correct = document.getElementById('correct-pin');
             correct.style.display= corrrectStatus;
            const incorrect = document.getElementById('incoreect-pin');
             incorrect.style.display= incorrrectStatus;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
